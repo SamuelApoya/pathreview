@@ -38,3 +38,24 @@ blockers or dependencies.
 **Setup confirmation:** [x] App runs locally at localhost:5173
 
 **Cohort ledger:** [x] Issue added to cohort ledger
+
+
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** https://github.com/SamuelApoya/pathreview/commit/1d3b201
+
+**Reproduction summary:**
+I reproduced the issue in a Python shell using `PIIScrubber().scrub()` and
+`.detect()` on "Call me at (555) 123-4567" — `scrub()` left the number
+completely untouched while correctly redacting a dashed-format number in the
+same string, and `detect()` returned zero PII items. Testing the regex
+directly confirmed the root cause is the separator pattern's lack of
+whitespace support
+
+**PLAN.md link:** https://github.com/SamuelApoya/pathreview/blob/fix/146-parenthesized-us-phone-pii/PLAN.md
+
+**Walkthrough video (recommended):** [link to your Loom video, ≤2 min — recommended, not graded]
+
+**Blockers or open questions:**
+[Anything you're still uncertain about going into Week 9, or leave blank]
