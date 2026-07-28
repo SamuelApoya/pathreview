@@ -55,7 +55,8 @@ whitespace support
 
 **PLAN.md link:** https://github.com/SamuelApoya/pathreview/blob/fix/146-parenthesized-us-phone-pii/PLAN.md
 
-**Walkthrough video (recommended):** [link to your Loom video, ≤2 min — recommended, not graded]
+**Walkthrough video (recommended):** N/A
 
 **Blockers or open questions:**
-[Anything you're still uncertain about going into Week 9, or leave blank]
+Still deciding whether widening the separator to accept whitespace introduces
+new false positives elsewhere in `detect()`
