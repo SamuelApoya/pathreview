@@ -43,7 +43,7 @@ blockers or dependencies.
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** https://github.com/SamuelApoya/pathreview/commit/1d3b201
+**Reproduction commit link:** https://github.com/SamuelApoya/pathreview/commit/0362f2a
 
 **Reproduction summary:**
 I reproduced the issue in a Python shell using `PIIScrubber().scrub()` and
