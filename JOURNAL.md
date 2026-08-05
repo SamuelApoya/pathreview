@@ -60,3 +60,60 @@ whitespace support
 **Blockers or open questions:**
 Still deciding whether widening the separator to accept whitespace introduces
 new false positives elsewhere in `detect()`
+
+
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+Implemented the fix for issue #146 — widened the phone_us regex separators
+in safety/pii_scrubber.py to accept whitespace, not just dash/dot, so
+formats like (555) 123-4567 and +1 555 123 4567 are now redacted correctly.
+Also fixed a secondary bug my own fix introduced, where the leading `(` or
+`+` character was dropped from the redacted/detected output. Both changes
+are committed and pushed. Added two new unit tests
+(test_parenthesized_phone_fully_redacted and
+test_parenthesized_phone_fully_detected) verifying scrub() and detect()
+both handle the parenthesized format correctly, including the opening
+paren. All sub-tasks from my Week 8 PLAN.md are complete.
+
+Ran make check and make test-unit across the whole repo to check for
+regressions. make test-unit shows 49 failed / 381 passed; only one
+failure (test_mixed_pii_and_text) touches my file, and I confirmed by
+diffing against main that it's a pre-existing failure from an unrelated
+street_address regex bug, not caused by my change. The other 48 failures
+are in unrelated modules (review service, resume parser, tech detector,
+bias detector, etc.) I never touched. make check similarly shows
+pre-existing ruff/mypy issues confined to files and lines I didn't modify.
+
+**Next steps:**
+Open the PR with the full template filled in, documenting the confirmed
+pre-existing failures in Notes for Reviewers.
+
+**Blockers:**
+None.
+
+---
+
+### Check-in 2 (end of week)
+
+**PR link:** https://github.com/ascherj/pathreview/pull/986
+
+**Branch:** fix/146-parenthesized-us-phone-pii
+
+**What you built:**
+Fixed the phone_us regex in safety/pii_scrubber.py so it redacts US phone
+numbers separated by whitespace (e.g. (555) 123-4567, +1 555 123 4567),
+not just dashes/dots, and fixed a secondary bug where the leading `(` or
+`+` character was dropped from the redacted output.
+
+**Tests added or updated:**
+tests/unit/test_pii_scrubber.py — added test_parenthesized_phone_fully_redacted
+and test_parenthesized_phone_fully_detected, covering both scrub() and
+detect() on the parenthesized phone number format.
+
+**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
+
+**Draft PR feedback received from:** none
