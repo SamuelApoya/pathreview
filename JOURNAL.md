@@ -117,3 +117,48 @@ detect() on the parenthesized phone number format.
 **Self-review confirmation:** [x] make check passes  [x] make test-unit passes
 
 **Draft PR feedback received from:** none
+
+
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [X] No — still awaiting review
+
+**Summary of feedback:**
+No reviewer feedback was received during the Summer 2026 course period. The PR remains open and GitHub shows that a review is still required.
+
+**How you responded:**
+No response was necessary because no reviewer feedback was received.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+The hardest part was determining whether the test and lint failures I encountered were caused by my changes or were already present in the codebase. Running the full repository checks produced a large number of failures, including 49 unit test failures and many lint and type-checking errors. I had to investigate the failures and compare the results against the main branch rather than assuming that my PR was responsible for them. This took more time than I expected, but it helped me understand the importance of establishing a baseline when working in an existing codebase.
+
+I also encountered a secondary issue while fixing the original phone number regex. After allowing whitespace separators, I discovered that the opening parenthesis or plus sign could still be left outside of the match. I had to adjust the regex boundary and add tests to make sure the entire phone number was handled correctly.
+
+
+**What did you learn about working in a large codebase?**
+I learned that contributing to an existing codebase requires more investigation and caution than building something from scratch. Before making changes, I needed to understand the existing regex patterns, how scrub() and detect() worked, and how the project's tests were structured.
+
+I also learned that not every problem in a repository needs to be fixed as part of your contribution. The repository had unrelated failures in areas such as the review service, resume parser, tech detector, and bias detector. Since those were outside the scope of my issue, I focused on making the smallest change necessary to fix the phone number problem and verified that my changes did not introduce new failures.
+
+
+**How did AI tools help — and where did they fall short?**
+AI tools were useful for helping me understand unfamiliar code, reason about the regular expression, identify possible edge cases, and develop test cases. They also helped me interpret error messages and think through different approaches to the fix.
+
+However, AI could not replace actually testing the code. When the repository produced many failures, I needed to inspect the failures myself and compare them against the main branch to determine which ones were pre-existing. This was an important lesson because an AI-generated explanation can be useful for forming a hypothesis, but the actual repository and test results are what ultimately determine whether a change is correct.
+
+**What would you do differently if you started over?**
+If I started over, I would establish a baseline of the repository's existing test, lint, and type-checking results earlier in the process. That would make it easier to distinguish pre-existing problems from regressions immediately after making my changes.
+
+I would also plan the test cases before implementing the regex change. I initially focused on making the whitespace-separated formats match, but the process revealed another edge case involving the opening parenthesis and plus sign. Defining all of the expected formats and expected redaction behavior first would have made the implementation more systematic.
+
+**What are you most proud of from this module?**
+I am most proud of successfully making a focused contribution to an unfamiliar codebase and validating the change rather than simply assuming that it worked. I fixed the original PII detection issue, identified and fixed a secondary edge case in my own implementation, added targeted tests for both scrub() and detect(), and investigated the repository's existing failures to make sure they were not regressions from my work.
+
+The biggest takeaway for me is that contributing to a real codebase involves more than writing code. It requires understanding existing behavior, testing assumptions, keeping the scope focused, and being able to explain why you believe your changes are correct.
